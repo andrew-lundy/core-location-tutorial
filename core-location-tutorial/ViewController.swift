@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var locationDataLbl: UILabel!
     
     private var locationManager: CLLocationManager!
-    private var geocoder: CLGeocoder!
     private var currentLocation: CLLocation!
+    private var geocoder: CLGeocoder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,8 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         
+        // Initialize the Geocoder
+        geocoder = CLGeocoder()
     }
     
     @IBAction func changeLocationBttnTapped(_ sender: Any) {
@@ -37,20 +39,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reverseGeocodeLocationBttnTapped(_ sender: Any) {
-        guard let locationText = locationDataLbl.text else { return }
-        guard let currentLocation = locationManager.location else { return }
-        
-        let location = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude) 
-        
-        
-        if locationText == "Location Data" {
+        guard let currentLocation = self.currentLocation else {
             print("Unable to reverse-geocode location.")
-        } else {
-            geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(location) { ([CLPlacemark], error) in
-                <#code#>
+            return
+        }
+        
+        geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            if let error = error {
+                print(error)
             }
-            print(location)
+
+            guard let placemark = placemarks?.first else { return }
+            guard let streetNumber = placemark.subThoroughfare else { return }
+            guard let streetName = placemark.thoroughfare else { return }
+            guard let city = placemark.locality else { return }
+            guard let state = placemark.administrativeArea else { return }
+            guard let zipCode = placemark.postalCode else { return }
+            
+            DispatchQueue.main.async {
+                self.locationDataLbl.text = "\(streetNumber) \(streetName) \n \(city), \(state) \(zipCode)"
+            }
         }
     }
     
@@ -70,12 +78,13 @@ extension ViewController: CLLocationManagerDelegate {
             guard let currentLocation = locationManager.location else { return }
             self.currentLocation = currentLocation
             locationDataLbl.text = "\(currentLocation.coordinate)"
-            print("LOCATION: \(currentLocation.timestamp)")
+            print("LOCATION: \(currentLocation)")
         default:
             return
         }
     }
 }
+
 
 
 
