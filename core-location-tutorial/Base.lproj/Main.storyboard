@@ -24,8 +24,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="9XZ-l5-w0f">
-                                <rect key="frame" x="95" y="767" width="225" height="75"/>
-                                <color key="backgroundColor" red="0.61568627450980395" green="0.50980392156862742" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="95" y="638" width="225" height="75"/>
+                                <color key="backgroundColor" red="0.87450980392156863" green="0.41176470588235292" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Wla-AT-ahC"/>
                                 </constraints>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgl-SM-Yol">
-                                <rect key="frame" x="32" y="398" width="350" height="100"/>
+                                <rect key="frame" x="32" y="348" width="350" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="YwC-SK-udl"/>
                                     <constraint firstAttribute="width" constant="350" id="bd5-ao-S4D"/>
@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ne8-Sp-Pcg">
-                                <rect key="frame" x="95" y="665" width="225" height="75"/>
+                                <rect key="frame" x="95" y="536" width="225" height="75"/>
                                 <color key="backgroundColor" red="0.71764705882352942" green="0.25490196078431371" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="n4X-lj-4Bx"/>
@@ -59,26 +59,45 @@
                                     <action selector="changeLocationBttnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm4-Ua-nVJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-NI-YGt">
+                                <rect key="frame" x="95" y="740" width="225" height="75"/>
+                                <color key="backgroundColor" red="1" green="0.65490196078431373" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="jEL-12-6KK"/>
+                                    <constraint firstAttribute="height" constant="75" id="k8T-26-MJL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="View Location on Map"/>
+                                <connections>
+                                    <action selector="reverseGeocodeLocationBttnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="olK-tW-IuZ"/>
+                                    <action selector="viewLocationOnMapButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x0F-1E-8aA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9XZ-l5-w0f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="AwB-n3-7s7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9XZ-l5-w0f" secondAttribute="bottom" constant="20" id="MvR-8n-BAi"/>
+                            <constraint firstItem="jlF-NI-YGt" firstAttribute="top" secondItem="9XZ-l5-w0f" secondAttribute="bottom" constant="27" id="D2X-A4-FSq"/>
                             <constraint firstItem="ZIa-8q-fnn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sw3-2T-Nf9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ne8-Sp-Pcg" secondAttribute="trailing" constant="94" id="Y3j-1I-UIm"/>
-                            <constraint firstItem="Hgl-SM-Yol" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yf9-dF-9Di"/>
+                            <constraint firstItem="Hgl-SM-Yol" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="Yf9-dF-9Di"/>
                             <constraint firstItem="9XZ-l5-w0f" firstAttribute="top" secondItem="ne8-Sp-Pcg" secondAttribute="bottom" constant="27" id="bXn-XA-esD"/>
                             <constraint firstItem="ne8-Sp-Pcg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="bc4-GN-iop"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9XZ-l5-w0f" secondAttribute="trailing" constant="94" id="cZi-5C-JSf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jlF-NI-YGt" secondAttribute="bottom" constant="47" id="enR-A6-AxF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jlF-NI-YGt" secondAttribute="trailing" constant="94" id="kmL-Fy-xMY"/>
                             <constraint firstItem="ZIa-8q-fnn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="vfD-7m-ZN3"/>
+                            <constraint firstItem="jlF-NI-YGt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="wsl-ml-Kfb"/>
                             <constraint firstItem="Hgl-SM-Yol" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xaS-DM-bVD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="changeLocationBttn" destination="ne8-Sp-Pcg" id="ITh-cG-P19"/>
                         <outlet property="locationDataLbl" destination="Hgl-SM-Yol" id="shX-GX-3Vf"/>
-                        <outlet property="reverseGeocodeLocation" destination="9XZ-l5-w0f" id="ZV9-fB-yMx"/>
+                        <outlet property="obtainLocationButton" destination="ne8-Sp-Pcg" id="ITh-cG-P19"/>
+                        <outlet property="reverseGeocodeLocationButton" destination="9XZ-l5-w0f" id="ZV9-fB-yMx"/>
+                        <outlet property="viewLocationOnMapButton" destination="jlF-NI-YGt" id="5hG-UT-Zzc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

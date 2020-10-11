@@ -10,27 +10,18 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var changeLocationBttn: UIButton!
-    @IBOutlet weak var reverseGeocodeLocation: UIButton!
+    // MARK: - Properties
+    @IBOutlet weak var obtainLocationButton: UIButton!
+    @IBOutlet weak var reverseGeocodeLocationButton: UIButton!
+    @IBOutlet weak var viewLocationOnMapButton: UIButton!
     @IBOutlet weak var locationDataLbl: UILabel!
     
     private var locationManager: CLLocationManager!
     private var currentLocation: CLLocation!
     private var geocoder: CLGeocoder!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        changeLocationBttn.layer.cornerRadius = 10
-        reverseGeocodeLocation.layer.cornerRadius = 10
-        reverseGeocodeLocation.titleLabel?.textAlignment = .center
-        
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        
-        // Initialize the Geocoder
-        geocoder = CLGeocoder()
-    }
-    
+   
+    // MARK: - Methods
     @IBAction func changeLocationBttnTapped(_ sender: Any) {
         if CLLocationManager.locationServicesEnabled() {
             // Request when in use authorization status.
@@ -67,6 +58,24 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func viewLocationOnMapButtonPressed(_ sender: Any) {
+        
+    }
+    
+    
+    // MARK: - Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        obtainLocationButton.layer.cornerRadius = 10
+        reverseGeocodeLocationButton.layer.cornerRadius = 10
+        reverseGeocodeLocationButton.titleLabel?.textAlignment = .center
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        // Initialize the Geocoder
+        geocoder = CLGeocoder()
+    }
     
     
 }
