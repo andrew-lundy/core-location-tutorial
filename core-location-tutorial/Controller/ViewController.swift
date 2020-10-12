@@ -10,28 +10,19 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var changeLocationBttn: UIButton!
-    @IBOutlet weak var reverseGeocodeLocation: UIButton!
+    // MARK: - Properties
+    @IBOutlet weak var obtainLocationButton: UIButton!
+    @IBOutlet weak var reverseGeocodeLocationButton: UIButton!
+    @IBOutlet weak var viewLocationOnMapButton: UIButton!
     @IBOutlet weak var locationDataLbl: UILabel!
     
     private var locationManager: CLLocationManager!
     private var currentLocation: CLLocation!
     private var geocoder: CLGeocoder!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        changeLocationBttn.layer.cornerRadius = 10
-        reverseGeocodeLocation.layer.cornerRadius = 10
-        reverseGeocodeLocation.titleLabel?.textAlignment = .center
-        
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        
-        // Initialize the Geocoder
-        geocoder = CLGeocoder()
-    }
-    
-    @IBAction func changeLocationBttnTapped(_ sender: Any) {
+   
+    // MARK: - Methods
+    @IBAction func obtainLocationButtonPressed(_ sender: Any) {
         if CLLocationManager.locationServicesEnabled() {
             // Request when in use authorization status.
             locationManager.requestWhenInUseAuthorization()
@@ -45,23 +36,55 @@ class ViewController: UIViewController {
         }
         
         geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+         
             if let error = error {
                 print(error)
             }
-
+            
+            
             guard let placemark = placemarks?.first else { return }
+         
+        
             guard let streetNumber = placemark.subThoroughfare else { return }
             guard let streetName = placemark.thoroughfare else { return }
             guard let city = placemark.locality else { return }
             guard let state = placemark.administrativeArea else { return }
             guard let zipCode = placemark.postalCode else { return }
             
+       
             DispatchQueue.main.async {
                 self.locationDataLbl.text = "\(streetNumber) \(streetName) \n \(city), \(state) \(zipCode)"
             }
         }
     }
     
+    @IBAction func viewLocationOnMapButtonPressed(_ sender: Any) {
+        // 1
+        let mapViewController = MapViewController()
+        // 2
+        mapViewController.userLocation = currentLocation
+        // 3
+        let navigationController = UINavigationController(rootViewController: mapViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Overrides
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        obtainLocationButton.layer.cornerRadius = 10
+        reverseGeocodeLocationButton.layer.cornerRadius = 10
+        reverseGeocodeLocationButton.titleLabel?.textAlignment = .center
+        
+        viewLocationOnMapButton.layer.cornerRadius = 10
+        viewLocationOnMapButton.titleLabel?.textAlignment = .center
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        // Initialize the Geocoder
+        geocoder = CLGeocoder()
+    }
     
     
 }
@@ -78,7 +101,6 @@ extension ViewController: CLLocationManagerDelegate {
             guard let currentLocation = locationManager.location else { return }
             self.currentLocation = currentLocation
             locationDataLbl.text = "\(currentLocation.coordinate)"
-            print("LOCATION: \(currentLocation)")
         default:
             return
         }
