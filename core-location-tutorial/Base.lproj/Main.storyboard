@@ -56,7 +56,7 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Obtain Location"/>
                                 <connections>
-                                    <action selector="changeLocationBttnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm4-Ua-nVJ"/>
+                                    <action selector="obtainLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wm4-Ua-nVJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-NI-YGt">
@@ -70,7 +70,6 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="View Location on Map"/>
                                 <connections>
-                                    <action selector="reverseGeocodeLocationBttnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="olK-tW-IuZ"/>
                                     <action selector="viewLocationOnMapButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x0F-1E-8aA"/>
                                 </connections>
                             </button>

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
    
     // MARK: - Methods
-    @IBAction func changeLocationBttnTapped(_ sender: Any) {
+    @IBAction func obtainLocationButtonPressed(_ sender: Any) {
         if CLLocationManager.locationServicesEnabled() {
             // Request when in use authorization status.
             locationManager.requestWhenInUseAuthorization()
@@ -59,7 +59,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func viewLocationOnMapButtonPressed(_ sender: Any) {
-        
+        // 1
+        let mapViewController = MapViewController()
+        // 2
+        mapViewController.userLocation = currentLocation
+        // 3
+        let navigationController = UINavigationController(rootViewController: mapViewController)
+        present(navigationController, animated: true, completion: nil)
     }
     
     
@@ -69,6 +75,9 @@ class ViewController: UIViewController {
         obtainLocationButton.layer.cornerRadius = 10
         reverseGeocodeLocationButton.layer.cornerRadius = 10
         reverseGeocodeLocationButton.titleLabel?.textAlignment = .center
+        
+        viewLocationOnMapButton.layer.cornerRadius = 10
+        viewLocationOnMapButton.titleLabel?.textAlignment = .center
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -92,7 +101,6 @@ extension ViewController: CLLocationManagerDelegate {
             guard let currentLocation = locationManager.location else { return }
             self.currentLocation = currentLocation
             locationDataLbl.text = "\(currentLocation.coordinate)"
-            print("LOCATION: \(currentLocation)")
         default:
             return
         }
