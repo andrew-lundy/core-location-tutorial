@@ -9,3 +9,6 @@ The blog posts and their corresponding branches:
   * [Repo Branch](https://github.com/andrew-lundy/core-location-tutorial/tree/geocoder)
 * [Core Location - Integrating with MapKit](https://rustynailsoftware.com/dev-blog/core-location-mapkit)
   * [Repo Branch](https://github.com/andrew-lundy/core-location-tutorial/tree/mapkit)
+
+
+Find more on the [Rusty Nail Software blog](https://rustynailsoftware.com/dev-blog/).
